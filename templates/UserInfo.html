@@ -1,0 +1,233 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8"> 
+		<title>用户管理</title>
+		<link rel="stylesheet" href="{% static 'css/UserInfo.css' %}">
+        <script src="/static/js/common.js/"></script>
+        <script src="/static/js/jquery-1.11.3.js"></script>
+        <script src="/static/js/jquery.cookie.js"></script>
+        <script src="/static/js/UserInfo.js"></script>
+
+		
+    </head>
+	<body>
+        <div class="alert"></div>
+		<table class="table_outside">
+			<tbody>
+				<tr>
+					<td>
+							<fieldset>
+								<legend>筛选条件:</legend>
+									<table>
+										<tr>
+											<td>
+												姓名: 
+											</td>
+											<td>
+												<input type="text" name="txt_userName" id="txt_userName">
+											</td>
+										</tr>
+										<tr>
+											<td>
+												生日: 
+											</td>
+											<td>
+												<input type="text" name="txt_birthday" id="txt_birthday" value="">
+											</td>
+										</tr>
+                                        <tr>
+											<td>
+												邮箱:
+											</td>
+											<td>
+												<input type="text" name="txt_email" id="txt_email">
+											</td>
+										</tr>
+                                        <tr>
+											<td>
+												角色:
+											</td>
+											<td>
+												<select name="sel_rolesLst" id="sel_rolesLst">
+{#                                                        {% for role in roleLst %}#}
+{#                                                            <option value=""></option>#}
+{#                                                        {% endfor %}#}
+
+                                                </select>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">
+												<div style="margin-left:80%">
+													<input type="button" name="btn_search" id="btn_search" value="搜索" style="width:100px">
+												</div>
+											</td>								
+										</tr>
+									</table>
+							</fieldset>
+					</td>
+				</tr>
+				<tr>
+					<td>
+							<fieldset>
+								<legend>搜索记录列表:</legend>
+								<div style="height:380px;overflow:scroll;">
+									<table>
+										<thead>
+											<tr style="background-color:yellow">
+
+												<td>
+													# 
+												</td>											
+												<td>
+													姓名 
+												</td>
+												<td>
+													生日
+												</td>
+												<td>
+													性别
+												</td>
+												<td>
+													邮箱
+												</td>
+                                                <td>
+                                                    角色名称
+                                                </td>
+                                                <td>
+                                                    出生省份
+                                                </td>
+											</tr>
+										</thead>
+										<tbody id="tbl_userLst">
+										</tbody>		
+										<!-- <tr> -->
+											<!-- <td> -->
+												<!-- 小勇  -->
+											<!-- </td> -->
+											<!-- <td> -->
+												<!-- 1986-02-28 -->
+											<!-- </td> -->
+											<!-- <td> -->
+												<!-- 男 -->
+											<!-- </td> -->
+											<!-- <td> -->
+												<!-- aabbccdd@qq.com -->
+											<!-- </td> -->
+										</tr>
+									</table>
+								</div>	
+							</fieldset>
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+							<fieldset>
+								<legend>用户详情:</legend>
+							<div style="height:160px;" action="save_user" method="post">
+								<table>
+									<tr>
+										<td>
+											姓名：
+                                            <input type="hidden" name="hid_user_id" id="hid_user_id" value="0">
+										</td>
+										<td>
+											<input type="text" name="detail_userName" id="detail_userName">
+										</td>
+										<td>
+											出生省份：
+										</td>
+										<td>
+											<select  name="detail_birthplace" id="detail_birthplace" style="width: 50%;">
+
+											</select>
+
+										</td>
+									</tr>
+									<tr>
+										<td>
+											生日：
+										</td>
+										<td>
+											<input type="text" name="detail_userName" id="detail_Birth">
+										</td>
+										<td>
+
+										</td>
+										<td>
+
+										</td>
+									</tr>
+									<tr>
+										<td>
+											性别：
+										</td>
+										<td>
+											<input type="radio" name="detail_userGender" id="detail_userGender_M" value="M">
+                                                <label for="detail_userGender_M">男</label>
+                                            </input>
+											<input type="radio" name="detail_userGender" id="detail_userGender_F" value="F">
+                                                <label for="detail_userGender_F">女</label>
+                                            </input>
+										</td>
+										<td>
+
+										</td>
+										<td>
+
+										</td>
+									</tr>
+									<tr>
+										<td>
+											邮箱：
+										</td>
+										<td>
+											<input type="text" name="detail_e_mail" id="detail_e_mail">
+										</td>
+									</tr>
+                                    <tr>
+                                        <td>
+                                            角色:
+										</td>
+										<td>
+                                                <select name="sel_roles_detail" id="sel_roles_detail">
+                                                </select>
+										</td>
+                                    </tr>
+									<tr>
+										<td colspan="4">
+											<div style="width:50%;float:right;">
+												<table>
+													<tr>
+														<td>
+															<input type="button" name="btn_add" id="btn_add" value="新增" style="width:85%;visibility: hidden;">
+														</td>
+														<td >
+															<input type="button" name="btn_edit" value="修改" style="width:85%;visibility: hidden;">
+														</td>
+														<td >
+															<input type="button" name="btn_del" id="btn_delUser" value="删除" style="width:85%;">
+														</td>
+														<td >
+															<input type="submit" name="btn_save" id="btn_save"  value="保存" style="width:85%;">
+														</td>
+														<td >
+															<input type="button" name="btn_edit" value="取消" style="width:85%;visibility: hidden;">
+														</td>
+													</tr>
+												</table>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>	
+							</fieldset>
+					</td>
+				</tr>
+				</tbody>
+		</table>
+	</body>
+</html>

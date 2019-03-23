@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<meta charset="utf-8"> 
+		<title>Python 处理 Jquery Ajax Post 请求测试</title>
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"/>
+        <script>
+            $(function () {
+                $.post
+                    (
+                            "save_user",	//url
+                            {userName:"小强"},				//json data
+                            function(result)			//后台服务 返回json
+                            {
+                                alert("提交成功！")
+                            }
+                    );
+            })
+        </script>
+	</head>
+	<body>	
+			<div action="save_user" method="post">
+				用户名：<input type="text" name="user" id="user">
+				密码：<input type="text" name="pwd" id="pwd">
+				<input type="submit" id="btn" value="登录">
+			</div>
+	</body>
+</html>
